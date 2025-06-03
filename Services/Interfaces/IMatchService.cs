@@ -4,10 +4,10 @@ namespace FootballManagerApi.Services.Interfaces
 {
     public interface IMatchService
     {
-        Task<List<MatchDto>> GetAllAsync();
-        Task<MatchDto?> GetByIdAsync(int id);
-        Task<MatchDto> CreateAsync(CreateMatchDto dto);
-        Task<bool> UpdateAsync(int id, UpdateMatchDto dto);
-        Task<bool> DeleteAsync(int id);
+        Task<List<MatchDto>> GetMatchesAllAsync();
+        Task<MatchDto?> GetMatchByIdAsync(int id);
+        Task<MatchDto> CreateMatchAsync(CreateMatchDto dto);
+        Task<bool> UpdateMatchAsync(int id, UpdateMatchDto dto);
+        Task<bool> DeleteMatchAsync(int id);
     }
 }

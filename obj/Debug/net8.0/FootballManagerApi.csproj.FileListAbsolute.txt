@@ -171,3 +171,7 @@ D:\My Projects Api\FootballManagerApi\FootballManagerApi\bin\Debug\net8.0\runtim
 D:\My Projects Api\FootballManagerApi\FootballManagerApi\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\My Projects Api\FootballManagerApi\FootballManagerApi\bin\Debug\net8.0\Npgsql.dll
 D:\My Projects Api\FootballManagerApi\FootballManagerApi\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\My Projects Api\FootballManagerApi\FootballManagerApi\bin\Debug\net8.0\AutoMapper.dll
+D:\My Projects Api\FootballManagerApi\FootballManagerApi\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\My Projects Api\FootballManagerApi\FootballManagerApi\obj\Debug\net8.0\FootballManagerApi.sourcelink.json
+D:\My Projects Api\FootballManagerApi\FootballManagerApi\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

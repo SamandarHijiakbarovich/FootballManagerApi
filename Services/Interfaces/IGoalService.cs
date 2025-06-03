@@ -4,10 +4,10 @@ namespace FootballManagerApi.Services.Interfaces
 {
     public interface IGoalService
     {
-        Task<List<GoalDto>> GetAllAsync();
-        Task<GoalDto?> GetByIdAsync(int id);
-        Task<GoalDto> CreateAsync(CreateGoalDto dto);
-        Task<bool> UpdateAsync(int id, UpdateGoalDto dto);
-        Task<bool> DeleteAsync(int id);
+        Task<List<GoalDto>> GetGoalAllAsync();
+        Task<GoalDto?> GetGoalByIdAsync(int id);
+        Task<GoalDto> CreateGoalAsync(CreateGoalDto dto);
+        Task<bool> UpdateGoalAsync(int id, UpdateGoalDto dto);
+        Task<bool> DeleteGoalAsync(int id);
     }
 }

@@ -1,6 +1,9 @@
 
 using FootballManagerApi.Data;
+using FootballManagerApi.Services;
+using FootballManagerApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 
 
 namespace FootballManagerApi;
@@ -11,16 +14,26 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Ensure the required package is installed: Microsoft.EntityFrameworkCore.SqlServer  
-        /*builder.Services.AddDbContext<FootballDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("FootballManagarDb")));
-*/
+
+        builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
+
         var connectionString = builder.Configuration.GetConnectionString("FootballManagarDb");
 
         builder.Services.AddDbContext<FootballDbContext>(option =>
         {
             option.UseNpgsql(connectionString);
         });
+        builder.Services.AddAutoMapper(typeof(Program));
+
+        builder.Services.AddScoped<IPlayerService, PlayerService>(); // <--->
+        builder.Services.AddScoped<ITeamService, TeamService>();
+        builder.Services.AddScoped<IMatchService, MatchService>();
+        builder.Services.AddScoped<IGoalService, GoalService>();
+
 
         // Add services to the container.  
         builder.Services.AddControllers();
