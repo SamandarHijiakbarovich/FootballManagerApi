@@ -1,4 +1,6 @@
-﻿namespace FootballManagerApi.DTOs;
+﻿using FootballManagerApi.Enums;
+
+namespace FootballManagerApi.DTOs;
 
 public class PlayerDto
 {
@@ -8,5 +10,5 @@ public class PlayerDto
     public int ShirtNumber { get; set; }
     public DateTime DateOfBirth { get; set; }
     public int TeamId { get; set; }
-    public string Position { get; set; } // enum nomini string ko‘rinishda qaytarish uchun
+    public Position Position { get; set; } // enum nomini string ko‘rinishda qaytarish uchun
 }
