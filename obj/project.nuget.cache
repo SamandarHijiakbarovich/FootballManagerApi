@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OIRQq+SJebU=",
+  "dgSpecHash": "osm2VO/j/wQ=",
   "success": true,
-  "projectFilePath": "D:\\My Projects Api\\FootballManagerApi\\FootballManagerApi\\FootballManagerApi.csproj",
+  "projectFilePath": "D:\\Interviews\\FootballManagerApi\\FootballManagerApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Samandar\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Samandar\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
