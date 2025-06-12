@@ -3,6 +3,7 @@ using System;
 using FootballManagerApi.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FootballManagerApi.Migrations
 {
     [DbContext(typeof(FootballDbContext))]
-    partial class FootballDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250612192707_AddedUserProfiles")]
+    partial class AddedUserProfiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,11 +112,21 @@ namespace FootballManagerApi.Migrations
                     b.Property<DateTime>("MatchDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int?>("TeamId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("TeamId1")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AwayTeamId");
 
                     b.HasIndex("HomeTeamId");
+
+                    b.HasIndex("TeamId");
+
+                    b.HasIndex("TeamId1");
 
                     b.ToTable("Matches");
                 });
@@ -203,16 +216,24 @@ namespace FootballManagerApi.Migrations
             modelBuilder.Entity("FootballManagerApi.Models.Match", b =>
                 {
                     b.HasOne("FootballManagerApi.Models.Team", "AwayTeam")
-                        .WithMany("AwayMatches")
+                        .WithMany()
                         .HasForeignKey("AwayTeamId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("FootballManagerApi.Models.Team", "HomeTeam")
-                        .WithMany("HomeMatches")
+                        .WithMany()
                         .HasForeignKey("HomeTeamId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.HasOne("FootballManagerApi.Models.Team", null)
+                        .WithMany("AwayMatches")
+                        .HasForeignKey("TeamId");
+
+                    b.HasOne("FootballManagerApi.Models.Team", null)
+                        .WithMany("HomeMatches")
+                        .HasForeignKey("TeamId1");
 
                     b.Navigation("AwayTeam");
 

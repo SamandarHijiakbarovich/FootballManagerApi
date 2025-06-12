@@ -3,7 +3,10 @@ using FootballManagerApi.Services;
 using FootballManagerApi.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using FootballManagerApi.Middleware;  // Middleware namespace-ni qo'shing
+using FootballManagerApi.Middleware;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;  // Middleware namespace-ni qo'shing
 
 
 namespace FootballManagerApi;
@@ -32,6 +35,26 @@ public class Program
         builder.Services.AddScoped<ITeamService, TeamService>();
         builder.Services.AddScoped<IMatchService, MatchService>();
         builder.Services.AddScoped<IGoalService, GoalService>();
+        builder.Services.AddScoped<IAuthService, AuthService>();
+
+
+        builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+      .AddJwtBearer(options =>
+      {
+          options.TokenValidationParameters = new TokenValidationParameters
+          {
+              ValidateIssuer = true,
+              ValidateAudience = true,
+              ValidateLifetime = true,
+              ValidateIssuerSigningKey = true,
+              ValidIssuer = builder.Configuration["Jwt:Issuer"],
+              ValidAudience = builder.Configuration["Jwt:Audience"],
+              IssuerSigningKey = new SymmetricSecurityKey(
+                  Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+          };
+      });
+
+        builder.Services.AddAuthorization();
 
         // Add services to the container.
         builder.Services.AddEndpointsApiExplorer();
@@ -51,6 +74,7 @@ public class Program
         app.UseMiddleware<ExceptionMiddleware>();
 
         app.UseAuthorization();
+        app.UseAuthentication();
 
         app.MapControllers();
 

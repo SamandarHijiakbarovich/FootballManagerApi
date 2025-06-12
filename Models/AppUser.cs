@@ -1,31 +1,30 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FootballManagerApi.Models
+namespace FootballManagerApi.Models;
+
+public class AppUser
 {
-    public class AppUser
-    {
-        [Key]
-        public int Id { get; set; }
+    [Key]
+    public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string Username { get; set; } = null!;
+    [Required]
+    [MaxLength(50)]
+    public string Username { get; set; } = null!;
 
-        [Required]
-        public string PasswordHash { get; set; } = null!;
+    [Required]
+    public string PasswordHash { get; set; } = null!;
 
-        [MaxLength(100)]
-        public string? FullName { get; set; }     // To‘liq ism
 
-        [EmailAddress]
-        public string? Email { get; set; }        // Elektron pochta
+    [MaxLength(100)]
+    public string? FullName { get; set; }
 
-        [Phone]
-        public string? PhoneNumber { get; set; }  // Telefon raqami
+    [EmailAddress]
+    public string? Email { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;  // Ro‘yxatdan o‘tgan sana
+    [Phone]
+    public string? PhoneNumber { get; set; }
 
-        public bool IsActive { get; set; } = true; // Foydalanuvchi aktiv yoki bloklangan
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-    }
+    public bool IsActive { get; set; } = true;
 }

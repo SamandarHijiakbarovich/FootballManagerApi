@@ -1,5 +1,6 @@
 ﻿using FootballManagerApi.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace FootballManagerApi.Data;
 
@@ -11,21 +12,24 @@ public class FootballDbContext:DbContext
     public DbSet<Team> Teams { get; set; }
     public DbSet<Match> Matches { get; set; }
     public DbSet<Goal> Goals { get; set; }
+    public DbSet<AppUser> Users { get; set; }
 
+  
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Match>()
             .HasOne(m => m.HomeTeam)
-            .WithMany()
+            .WithMany(t => t.HomeMatches)
             .HasForeignKey(m => m.HomeTeamId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<Match>()
             .HasOne(m => m.AwayTeam)
-            .WithMany()
+            .WithMany(t => t.AwayMatches)
             .HasForeignKey(m => m.AwayTeamId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        base.OnModelCreating(modelBuilder);
+            .OnDelete(DeleteBehavior.NoAction);
     }
+
 }
